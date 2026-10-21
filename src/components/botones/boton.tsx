@@ -1,46 +1,53 @@
 import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 interface BotonesProps {
   onButtonClick?: (val: string) => void;
 }
 
+const buttons = ['C', '±', '%', '÷', '7', '8', '9', '×', '4', '5', '6', '-', '1', '2', '3', '+', '0', '.', '='];
+
 export const Botones: React.FC<BotonesProps> = ({ onButtonClick }) => {
-  const handleClick = (val: string) => {
-    if (onButtonClick) onButtonClick(val);
-  };
-
   return (
-    <>
-      {/* Fila 1 */}
-      <button onClick={() => handleClick('C')} className="p-4 bg-slate-700 hover:bg-slate-600 active:bg-slate-500 text-white rounded-xl font-semibold text-xl transition">C</button>
-      <button onClick={() => handleClick('±')} className="p-4 bg-slate-700 hover:bg-slate-600 active:bg-slate-500 text-white rounded-xl font-semibold text-xl transition">±</button>
-      <button onClick={() => handleClick('%')} className="p-4 bg-slate-700 hover:bg-slate-600 active:bg-slate-500 text-white rounded-xl font-semibold text-xl transition">%</button>
-      <button onClick={() => handleClick('÷')} className="p-4 bg-amber-600 hover:bg-amber-500 active:bg-amber-400 text-white rounded-xl font-semibold text-xl transition">÷</button>
-
-      {/* Fila 2 */}
-      <button onClick={() => handleClick('7')} className="p-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white rounded-xl font-semibold text-xl transition">7</button>
-      <button onClick={() => handleClick('8')} className="p-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white rounded-xl font-semibold text-xl transition">8</button>
-      <button onClick={() => handleClick('9')} className="p-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white rounded-xl font-semibold text-xl transition">9</button>
-      <button onClick={() => handleClick('×')} className="p-4 bg-amber-600 hover:bg-amber-500 active:bg-amber-400 text-white rounded-xl font-semibold text-xl transition">×</button>
-
-      {/* Fila 3 */}
-      <button onClick={() => handleClick('4')} className="p-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white rounded-xl font-semibold text-xl transition">4</button>
-      <button onClick={() => handleClick('5')} className="p-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white rounded-xl font-semibold text-xl transition">5</button>
-      <button onClick={() => handleClick('6')} className="p-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white rounded-xl font-semibold text-xl transition">6</button>
-      <button onClick={() => handleClick('-')} className="p-4 bg-amber-600 hover:bg-amber-500 active:bg-amber-400 text-white rounded-xl font-semibold text-xl transition">-</button>
-
-      {/* Fila 4 */}
-      <button onClick={() => handleClick('1')} className="p-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white rounded-xl font-semibold text-xl transition">1</button>
-      <button onClick={() => handleClick('2')} className="p-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white rounded-xl font-semibold text-xl transition">2</button>
-      <button onClick={() => handleClick('3')} className="p-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white rounded-xl font-semibold text-xl transition">3</button>
-      <button onClick={() => handleClick('+')} className="p-4 bg-amber-600 hover:bg-amber-500 active:bg-amber-400 text-white rounded-xl font-semibold text-xl transition">+</button>
-
-      {/* Fila 5 */}
-      <button onClick={() => handleClick('0')} className="p-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white rounded-xl font-semibold text-xl transition col-span-2">0</button>
-      <button onClick={() => handleClick('.')} className="p-4 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white rounded-xl font-semibold text-xl transition">.</button>
-      <button onClick={() => handleClick('=')} className="p-4 bg-amber-600 hover:bg-amber-500 active:bg-amber-400 text-white rounded-xl font-semibold text-xl transition">=</button>
-    </>
+    <View style={styles.grid}>
+      {buttons.map((label) => (
+        <TouchableOpacity
+          key={label}
+          style={[styles.btn, label === '0' && styles.zero, ['÷', '×', '-', '+', '='].includes(label) && styles.op]}
+          onPress={() => onButtonClick?.(label)}
+        >
+          <Text style={styles.text}>{label}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  btn: {
+    width: '22%',
+    height: 60,
+    backgroundColor: '#334155',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 12,
+  },
+  zero: {
+    width: '48%',
+  },
+  op: {
+    backgroundColor: '#d97706',
+  },
+  text: {
+    color: '#ffffff',
+    fontSize: 22,
+    fontWeight: '600',
+  },
+});
 
 export default Botones;
