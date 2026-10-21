@@ -16,10 +16,10 @@ export const Rejilla: React.FC<RejillaProps> = ({ children }) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    maxWidth: 360,
-    padding: 16,
-    backgroundColor: '#0f172a',
-    borderRadius: 24,
+    maxWidth: 340,
+    padding: 20,
+    backgroundColor: '#27183C',
+    borderRadius: 28,
   },
 });
 
