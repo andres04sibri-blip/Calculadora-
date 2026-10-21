@@ -1,9 +1,16 @@
-import { Text, View, StyleSheet } from "react-native";
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import Display from '../components/botones/display';
+import Rejilla from '../components/botones/rejilla';
+import Botones from '../components/botones/boton';
 
-export default function Index() {
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text>Edit src/app/index.tsx to edit this screen.</Text>
+      <Rejilla>
+        <Display value="0" />
+        <Botones />
+      </Rejilla>
     </View>
   );
 }
@@ -11,7 +18,10 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#020617',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
   },
 });
+
