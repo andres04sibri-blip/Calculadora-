@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { View, StyleSheet } from 'react-native';
 
 interface RejillaProps {
   children?: ReactNode;
@@ -6,10 +7,20 @@ interface RejillaProps {
 
 export const Rejilla: React.FC<RejillaProps> = ({ children }) => {
   return (
-    <div className="grid grid-cols-4 gap-2 w-full max-w-xs p-4 bg-slate-900 rounded-2xl shadow-xl">
+    <View style={styles.container}>
       {children}
-    </div>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    maxWidth: 360,
+    padding: 16,
+    backgroundColor: '#0f172a',
+    borderRadius: 24,
+  },
+});
 
 export default Rejilla;
